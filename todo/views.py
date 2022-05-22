@@ -27,6 +27,7 @@ def add_item(request):
 
     return render(request, 'todo/add_item.html', context)
 
+
 def edit_item(request, item_id):
     item = get_object_or_404(Item, id=item_id)
     if request.method == 'POST':
@@ -40,3 +41,10 @@ def edit_item(request, item_id):
         'form': form
     }
     return render(request, 'todo/edit_item.html', context)
+
+
+def toggle_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    item.done = not item.done
+    item.save()
+    return redirect('get_todo_list')
