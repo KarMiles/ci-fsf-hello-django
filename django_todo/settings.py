@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+# karol. hiding SECRET_KEY
+if os.path.exists("env.py"):
+    import env  # noqa
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,10 +86,7 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.parse('postgres://oibtgtoclcsrek:bf1e5cfd56ae56a93f2f9c978640f5ee1acb3adb694d4c3e17c8522424cac520@ec2-176-34-211-0.eu-west-1.compute.amazonaws.com:5432/d6hisec93gcjou')
-}
-
+DATABASES = os.environ.get("DATABASES")
 
 
 # Password validation
