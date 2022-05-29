@@ -13,9 +13,17 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import sys
+
 # Karol: hiding SECRET_KEY
-if os.path.exists("env.py"):
-    import env  # noqa
+# if os.path.exists("env.py"):
+#     import env  # noqa
+
+# append the path of the parent directory
+sys.path.append(".")
+
+if os.path.isfile('env.py'):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,6 +93,7 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
 
 DATABASES_SECRET_KEY = os.getenv("DATABASES_SECRET_KEY")
 
