@@ -16,14 +16,13 @@ import dj_database_url
 import sys
 
 # Karol: hiding SECRET_KEY
-# if os.path.exists("env.py"):
-#     import env  # noqa
 
 # append the path of the parent directory
 sys.path.append(".")
 
 if os.path.isfile('env.py'):
     import env
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -95,7 +94,7 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # }
 
 
-DATABASES_SECRET_KEY = os.getenv("DATABASES_SECRET_KEY")
+DATABASES_SECRET_KEY = os.getenv("DATABASES_SECRET_KEY").encode()
 
 DATABASES = {
     'default': dj_database_url.parse(DATABASES_SECRET_KEY)
