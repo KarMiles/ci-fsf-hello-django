@@ -94,10 +94,15 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # }
 
 
-DATABASES_SECRET_KEY = os.getenv("DATABASES_SECRET_KEY").encode(encoding='UTF-8')
+# DATABASES_SECRET_KEY = os.getenv("DATABASES_SECRET_KEY").encode(encoding='UTF-8')
 
-DATABASES = {
-    'default': dj_database_url.parse(DATABASES_SECRET_KEY)
+# DATABASES = {
+#     'default': dj_database_url.parse(DATABASES_SECRET_KEY)
+# }
+
+
+DATABASES = { 
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL')) 
 }
 
 
