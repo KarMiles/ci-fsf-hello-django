@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-# karol. hiding SECRET_KEY
+# Karol: hiding SECRET_KEY
 if os.path.exists("env.py"):
     import env  # noqa
 
@@ -86,8 +86,10 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 #     }
 # }
 
+DATABASES_SECRET_KEY = os.getenv("DATABASES_SECRET_KEY")
+
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASES_SECRET_KEY"))
+    'default': dj_database_url.parse(os.environ.get(DATABASES_SECRET_KEY))
 }
 
 
